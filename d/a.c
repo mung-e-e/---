@@ -46,6 +46,7 @@ void sayID(bool asroot, int xstacked) {
     k[0] = ID_y + '0';
 
     FILE* stream = asroot ? fopen(k, "a") : fopen(k, "w");
+    // FILE* stream = stdout;
 
     if(asroot) {
         fprintf(stream, "Became a root\n");
@@ -86,16 +87,26 @@ int subtree_Create() {
         stackx += ID[ID_y][x];
     }
 
-    if(++ID_y == 4) exit(0);
+    if(++ID_y == 5) exit(0);
     int _curr = curr[0];
 
-    printf("_curr: %d stack: %d\n", _curr, stackx);
     for(int i = stackx; i < curr[0] + stackx;) {
         ID_x = --curr[0] + stackx;
         pid = fork();
 
         if(pid == -1) exit(-1);
         else if(!pid) break;
+    }
+
+    switch(ID[1][0]) {
+        case 2: {
+            switch(ID[0][0]) {
+                case 1: printf("left sub\n"); break;
+                case 0: printf("right sub\n"); break;
+            }       
+        }
+        case 1: printf("left sub\n"); break;
+        case 0: printf("right sub\n"); break;
     }
 
     if(pid) {
