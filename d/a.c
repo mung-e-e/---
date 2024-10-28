@@ -15,6 +15,8 @@
 // after it would return the child's pid.
 #define wait_FAILED_SOMEHOW ((pid_t)-1)
 
+
+
 /// @brief 
 /// Left for each trees
 int ID[5][3] = {
@@ -98,17 +100,6 @@ int subtree_Create() {
         else if(!pid) break;
     }
 
-    switch(ID[1][0]) {
-        case 2: {
-            switch(ID[0][0]) {
-                case 1: printf("left sub\n"); break;
-                case 0: printf("right sub\n"); break;
-            }       
-        }
-        case 1: printf("left sub\n"); break;
-        case 0: printf("right sub\n"); break;
-    }
-
     if(pid) {
         ID_y--;
         ID_x = curr - &ID[ID_y][0];
@@ -120,6 +111,8 @@ int subtree_Create() {
     else {
         sayID(0, stackx);
         first++;
+
+
         goto startover;
     }
 
